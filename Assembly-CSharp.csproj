@@ -65,8 +65,10 @@
     <Compile Include="Assets\Scripts\Fiende.cs" />
     <Compile Include="Assets\Scripts\Gamemaster.cs" />
     <Compile Include="Assets\Scripts\Kamera.cs" />
+    <Compile Include="Assets\Scripts\Liv.cs" />
     <Compile Include="Assets\Scripts\SpelarKontroll.cs" />
     <Compile Include="Assets\Scripts\SpelarRörelse.cs" />
+    <Compile Include="Assets\Scripts\Spikar.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/André Sturesson/Desktop/Slutprojekt---Programmering-2-master/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

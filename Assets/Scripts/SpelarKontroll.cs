@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class SpelarKontroll : MonoBehaviour
@@ -14,6 +16,11 @@ public class SpelarKontroll : MonoBehaviour
     [SerializeField] private Transform CeilingCheck;                          // Kollar om det finns något ovanför
     [SerializeField] private Collider2D duckaDisableCollider;                // Collidern på toppen av spelaren kommer stängas av när man duckar så man kan tränga sig igenom trånga utrymmen.
 
+    //Liv systemet
+
+    public int Liv;
+    public int MaxLiv = 4;
+
     const float GroundedRadius = .2f; // Radiusen av cirkelkollidern för att se om man ärt på marken.
     private bool Grounded;            // Kollar om spelaren är på marken
     const float CeilingRadius = .2f; // Kollar om spelaren kan stå upp eller om det finns något ovanför
@@ -21,8 +28,26 @@ public class SpelarKontroll : MonoBehaviour
     private bool FacingRight = true;  // Kollar vilket håll spelaren kollar
     private Vector3 Velocity = Vector3.zero;
 
+
+    private void Start()
+    {
+        Liv = MaxLiv; //För man ska alltid starta med fullt liv
+    }
+
+    private void Update()
+    {
+        if(Liv > MaxLiv)
+        {
+            Liv = MaxLiv;
+        }
+        if(Liv <= 0)
+        {
+            Dö();
+        }
+    }
     [Header("Events")]
     [Space]
+
 
     public UnityEvent OnLandEvent;
 
@@ -141,5 +166,30 @@ public class SpelarKontroll : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    void Dö()
+    {
+        //Omstart
+        Application.LoadLevel(Application.loadedLevel);
+    }
+
+    public void Skada(int skada)
+    {
+        Liv -= skada;
+        gameObject.GetComponent <Animation>().Play("Spelare_Skada");
+    }
+
+    public IEnumerator OntAnim(float OntTid, float OntKraft, Vector3 OntDir)
+    {
+        float timer = 0;
+
+        while(OntTid > timer)
+        {
+            timer += Time.deltaTime;
+            Rigidbody2D.AddForce(new Vector3(OntDir.x * -75, OntDir.y * OntKraft, transform.position.z));
+
+        }
+        yield return 0; //Stoppa OntAnim
     }
 }

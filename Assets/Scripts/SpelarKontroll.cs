@@ -22,7 +22,7 @@ public class SpelarKontroll : MonoBehaviour
     public int MaxLiv = 4;
 
     const float GroundedRadius = .2f; // Radiusen av cirkelkollidern för att se om man ärt på marken.
-    private bool Grounded;            // Kollar om spelaren är på marken
+    public bool Grounded;            // Kollar om spelaren är på marken
     const float CeilingRadius = .2f; // Kollar om spelaren kan stå upp eller om det finns något ovanför
     private Rigidbody2D Rigidbody2D;
     private bool FacingRight = true;  // Kollar vilket håll spelaren kollar

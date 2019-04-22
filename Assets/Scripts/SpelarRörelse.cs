@@ -11,6 +11,7 @@ public class SpelarRörelse : MonoBehaviour
     public float hastighet = 40f;
     Gamemaster gamemaster;
 
+    public bool KanDubellHoppa;
     float HorizontalMove = 0f;
     bool hoppa = false;
     bool ducka = false;
@@ -27,7 +28,19 @@ public class SpelarRörelse : MonoBehaviour
         HorizontalMove = Input.GetAxisRaw("Horizontal") * hastighet;
         if (Input.GetButtonDown("Jump"))
         {
-            hoppa = true;
+            if (rörelse.Grounded)
+            {
+                KanDubellHoppa = true;
+                hoppa = true;
+            }
+            else
+            {
+                if (KanDubellHoppa)
+                {
+                    KanDubellHoppa = false;
+                    hoppa = true;
+                }
+            }
         }
         if (Input.GetButtonDown("Ducka"))
         {

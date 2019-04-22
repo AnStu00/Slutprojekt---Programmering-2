@@ -61,11 +61,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Meny_Knappar.cs" />
     <Compile Include="Assets\Scripts\Bakgrund.cs" />
     <Compile Include="Assets\Scripts\Fiende.cs" />
     <Compile Include="Assets\Scripts\Gamemaster.cs" />
     <Compile Include="Assets\Scripts\Kamera.cs" />
     <Compile Include="Assets\Scripts\Liv.cs" />
+    <Compile Include="Assets\Scripts\PausMeny.cs" />
     <Compile Include="Assets\Scripts\SpelarKontroll.cs" />
     <Compile Include="Assets\Scripts\SpelarRörelse.cs" />
     <Compile Include="Assets\Scripts\Spikar.cs" />
